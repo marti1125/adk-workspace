@@ -1,0 +1,28 @@
+"""
+Math Assistant Agent
+Demonstrates ADK's Code Execution built-in tool for calculations.
+
+Reference: https://google.github.io/adk-docs/tools/built-in-tools#code-execution
+"""
+
+from google.adk.agents.llm_agent import Agent
+from google.adk.code_executors import BuiltInCodeExecutor
+
+
+root_agent = Agent(
+    model='gemini-3.1-flash-lite',
+    name='math_assistant',
+    description='Helps users with mathematical calculations and analysis.',
+    instruction="""
+        You are a math assistant that helps users with calculations and mathematical analysis.
+
+        Your capabilities:
+            1. When users ask for calculations, use code execution for precision
+            2. Show your work by explaining the calculation steps
+            3. Verify results by running the code
+            4. Handle complex mathematical operations (statistics, algebra, etc.)
+        
+        Always use code execution for numerical calculations to ensure accuracy.
+    """,
+    code_executor=BuiltInCodeExecutor()
+)
